@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3cu2epu8wvu4"]
+
+[ext_resource type="Texture2D" uid="uid://bli32u8v5u6qk" path="res://Sprites/Square.png" id="1_carq8"]
+[ext_resource type="Script" path="res://Base/Scripts/FPSLabel.gd" id="1_pb2a5"]
+[ext_resource type="PackedScene" uid="uid://cn4268y0wwo2s" path="res://ball.tscn" id="2_fccdi"]
+[ext_resource type="Texture2D" uid="uid://bmln0oi0u380r" path="res://Sprites/Player.png" id="4_dhgh0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m07fm"]
+size = Vector2(320, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ld5sm"]
+size = Vector2(325, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_romgo"]
+size = Vector2(31, 179)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_737yk"]
+size = Vector2(31, 178)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qm40"]
+size = Vector2(9, 15)
+
+[node name="World" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(160, 171)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.2)
+shape = SubResource("RectangleShape2D_m07fm")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(40.641, 2.44934)
+texture = ExtResource("1_carq8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(160, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ld5sm")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+scale = Vector2(40.641, 2.44934)
+texture = ExtResource("1_carq8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(320, 90)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_romgo")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+scale = Vector2(3.875, 22.5)
+texture = ExtResource("1_carq8")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(13, 90)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_737yk")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+scale = Vector2(3.875, 22.5)
+texture = ExtResource("1_carq8")
+
+[node name="Ball" parent="." instance=ExtResource("2_fccdi")]
+position = Vector2(139, 125)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "FPS: 30"
+script = ExtResource("1_pb2a5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(188, 116)
+texture = ExtResource("1_carq8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(139, 116)
+texture = ExtResource("1_carq8")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-33, 17)
+floor_stop_on_slope = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(139.5, 124.5)
+shape = SubResource("RectangleShape2D_2qm40")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(139, 124)
+texture = ExtResource("4_dhgh0")
+hframes = 7
+vframes = 3
+
+[node name="Ball2" parent="." instance=ExtResource("2_fccdi")]
+position = Vector2(188, 125)

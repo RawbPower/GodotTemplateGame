@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dqqn5a2a6t28d"]
+
+[ext_resource type="Shader" path="res://Base/Resources/PixelPerfect.gdshader" id="1_srrvc"]
+
+[resource]
+shader = ExtResource("1_srrvc")

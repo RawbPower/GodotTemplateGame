@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://t3pph0gj730f"]
+
+[ext_resource type="Script" path="res://Base/Scripts/World.gd" id="1_mwog8"]
+[ext_resource type="PackedScene" uid="uid://3mqp6qiakxml" path="res://Base/Scenes/background.tscn" id="2_gyita"]
+[ext_resource type="PackedScene" uid="uid://du0ndlbd65xig" path="res://Base/Scenes/level_completed.tscn" id="3_fkpp0"]
+[ext_resource type="PackedScene" uid="uid://cll165b5o56hd" path="res://Base/Scenes/level_timer.tscn" id="4_tvy7i"]
+[ext_resource type="PackedScene" uid="uid://cogmtvwk57igd" path="res://Base/Scenes/player.tscn" id="5_36fkh"]
+[ext_resource type="PackedScene" uid="uid://dxxuypkhwhu2s" path="res://Base/Scenes/tile_map.tscn" id="8_vq5pv"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_mwog8")
+
+[node name="Background" parent="." instance=ExtResource("2_gyita")]
+modulate = Color(0.0980392, 0.105882, 0.101961, 1)
+scale = Vector2(100, 80)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("3_fkpp0")]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 20.0
+grow_horizontal = 2
+
+[node name="LevelTimer" parent="CanvasLayer/CenterContainer" instance=ExtResource("4_tvy7i")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Player" parent="." instance=ExtResource("5_36fkh")]
+
+[node name="LevelTileMap" parent="." instance=ExtResource("8_vq5pv")]
+
+[connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_next_level"]
+[connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]
