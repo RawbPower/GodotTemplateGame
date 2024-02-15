@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Base/Scripts/PlatformerPlayer.gd" id="1_pgpqm"]
 [ext_resource type="Resource" uid="uid://x5gfdrei67s1" path="res://Base/Resources/DefaultPlatformerMovementData.tres" id="2_w567r"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4l2"]
 size = Vector2(8, 15)
 

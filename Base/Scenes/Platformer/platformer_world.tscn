@@ -11,7 +11,6 @@
 script = ExtResource("1_mwog8")
 
 [node name="Background" parent="." instance=ExtResource("2_gyita")]
-modulate = Color(0.0980392, 0.105882, 0.101961, 1)
 scale = Vector2(100, 80)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

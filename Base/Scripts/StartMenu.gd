@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var start_level: PackedScene
+
 @onready var start_game_button = %StartGameButton
 
 
@@ -8,7 +10,7 @@ func _ready():
 
 func _on_start_game_button_pressed():
 	await LevelTransition.fade_to_black()
-	get_tree().change_scene_to_file("res://Base/Scenes/Platformer/platformer_level_1.tscn")
+	get_tree().change_scene_to_packed(start_level)
 	LevelTransition.fade_from_black()
 
 

@@ -97,7 +97,6 @@ func update_animations(input_horizontal):
 	if (is_on_floor()):
 		if input_horizontal:
 			animated_sprite_2d.play("run")
-			print("Hi")
 		else:
 			animated_sprite_2d.play("idle")
 	elif (is_on_wall_only()):

@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7djtpn5ev2e8"]
+[gd_scene load_steps=3 format=3 uid="uid://b7djtpn5ev2e8"]
 
 [ext_resource type="Script" path="res://Base/Scripts/StartMenu.gd" id="1_nih8j"]
+[ext_resource type="PackedScene" uid="uid://b26n51cmttgax" path="res://Base/Scenes/TopDown/topdown_world.tscn" id="2_y844v"]
 
 [node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_nih8j")
+start_level = ExtResource("2_y844v")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
