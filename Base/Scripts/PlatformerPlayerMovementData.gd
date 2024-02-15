@@ -1,4 +1,4 @@
-class_name PlayerMovementData
+class_name PlatformerPlayerMovementData
 extends Resource
 
 @export var speed = 100.0

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var movement_data : PlayerMovementData
+@export var movement_data : PlatformerPlayerMovementData
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var air_jump = false

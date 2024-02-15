@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3mqp6qiakxml" path="res://Base/Scenes/background.tscn" id="2_gyita"]
 [ext_resource type="PackedScene" uid="uid://du0ndlbd65xig" path="res://Base/Scenes/level_completed.tscn" id="3_fkpp0"]
 [ext_resource type="PackedScene" uid="uid://cll165b5o56hd" path="res://Base/Scenes/level_timer.tscn" id="4_tvy7i"]
-[ext_resource type="PackedScene" uid="uid://cogmtvwk57igd" path="res://Base/Scenes/player.tscn" id="5_36fkh"]
+[ext_resource type="PackedScene" uid="uid://cogmtvwk57igd" path="res://Base/Scenes/Platformer/platformer_player.tscn" id="5_7ljg6"]
 [ext_resource type="PackedScene" uid="uid://dxxuypkhwhu2s" path="res://Base/Scenes/tile_map.tscn" id="8_vq5pv"]
 
 [node name="World" type="Node2D"]
@@ -31,7 +31,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Player" parent="." instance=ExtResource("5_36fkh")]
+[node name="Player" parent="." instance=ExtResource("5_7ljg6")]
 
 [node name="LevelTileMap" parent="." instance=ExtResource("8_vq5pv")]
 

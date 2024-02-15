@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cc70p1ui5378f"]
 
-[ext_resource type="PackedScene" uid="uid://t3pph0gj730f" path="res://Base/Scenes/world.tscn" id="1_8hbtl"]
+[ext_resource type="PackedScene" uid="uid://t3pph0gj730f" path="res://Base/Scenes/Platformer/platformer_world.tscn" id="1_8hbtl"]
 [ext_resource type="PackedScene" uid="uid://dtokl3y0vjghe" path="res://Base/Scenes/spike.tscn" id="2_vjwec"]
 [ext_resource type="PackedScene" uid="uid://be7ryhr7wxefr" path="res://Base/Scenes/coin.tscn" id="3_8doku"]
 
