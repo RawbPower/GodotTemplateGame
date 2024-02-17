@@ -8,6 +8,8 @@ var just_wall_jumped = false
 var last_wall_normal = Vector2.ZERO
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var sprite_2d = $Sprite2D
+@onready var animation_player = $AnimationPlayer
 @onready var coyote_jump_timer = $CoyoteJumpTimer
 @onready var coyote_wall_jump_timer = $CoyoteWallJumpTimer
 @onready var starting_position = global_position
@@ -92,20 +94,20 @@ func apply_air_resistance(input_horizontal, delta):
 
 func update_animations(input_horizontal):	
 	if input_horizontal:
-		animated_sprite_2d.flip_h = input_horizontal < 0
+		sprite_2d.flip_h = input_horizontal < 0
 	
 	if (is_on_floor()):
 		if input_horizontal:
-			animated_sprite_2d.play("run")
+			animation_player.play("run")
 		else:
-			animated_sprite_2d.play("idle")
+			animation_player.play("idle")
 	elif (is_on_wall_only()):
-		animated_sprite_2d.play("wall_slide")
+		animation_player.play("wall_slide")
 	else:
 		if (velocity.y < 0.0):
-			animated_sprite_2d.play("jump_up")
+			animation_player.play("jump_up")
 		else:
-			animated_sprite_2d.play("jump_down")
+			animation_player.play("jump_down")
 
 
 func _on_hurtbox_area_entered(_area):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cogmtvwk57igd"]
+[gd_scene load_steps=12 format=3 uid="uid://cogmtvwk57igd"]
 
 [ext_resource type="Texture2D" uid="uid://bmln0oi0u380r" path="res://Sprites/Player.png" id="1_8lf7b"]
 [ext_resource type="Script" path="res://Base/Scripts/PlatformerPlayer.gd" id="1_pgpqm"]
@@ -7,124 +7,99 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l4l2"]
 size = Vector2(8, 15)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fccuo"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(0, 0, 18, 18)
+[sub_resource type="Animation" id="Animation_cj7ei"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_outvt"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(18, 0, 18, 18)
+[sub_resource type="Animation" id="Animation_lxoxt"]
+resource_name = "jump_down"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qtuno"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(36, 0, 18, 18)
+[sub_resource type="Animation" id="Animation_fsgei"]
+resource_name = "jump_up"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl8jd"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(54, 0, 18, 18)
+[sub_resource type="Animation" id="Animation_ep05u"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ljvl"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(72, 18, 18, 18)
+[sub_resource type="Animation" id="Animation_f3a3q"]
+resource_name = "wall_slide"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rdngc"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(54, 18, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o4jko"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(72, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3pbi"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(90, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4k5rd"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(108, 0, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rq40y"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(0, 18, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8fprq"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(18, 18, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4uldv"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(36, 18, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcxw4"]
-atlas = ExtResource("1_8lf7b")
-region = Rect2(90, 18, 18, 18)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tpf3e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fccuo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_outvt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qtuno")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pl8jd")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ljvl")
-}],
-"loop": true,
-"name": &"jump_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rdngc")
-}],
-"loop": true,
-"name": &"jump_up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o4jko")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d3pbi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4k5rd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rq40y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8fprq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4uldv")
-}],
-"loop": true,
-"name": &"run",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xcxw4")
-}],
-"loop": true,
-"name": &"wall_slide",
-"speed": 5.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxllh"]
+_data = {
+"idle": SubResource("Animation_cj7ei"),
+"jump_down": SubResource("Animation_lxoxt"),
+"jump_up": SubResource("Animation_fsgei"),
+"run": SubResource("Animation_ep05u"),
+"wall_slide": SubResource("Animation_f3a3q")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p468u"]
 size = Vector2(5, 11)
@@ -141,10 +116,18 @@ movement_data = ExtResource("2_w567r")
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_8l4l2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_tpf3e")
-animation = &"run"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8lf7b")
+offset = Vector2(0, -8)
+hframes = 7
+vframes = 3
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sxllh")
+}
+autoplay = "idle"
 
 [node name="CoyoteJumpTimer" type="Timer" parent="."]
 wait_time = 0.1
