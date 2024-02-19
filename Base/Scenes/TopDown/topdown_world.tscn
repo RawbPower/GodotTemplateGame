@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b26n51cmttgax"]
+[gd_scene load_steps=6 format=3 uid="uid://b26n51cmttgax"]
 
 [ext_resource type="PackedScene" uid="uid://blhkbe1kqstdl" path="res://Base/Scenes/TopDown/topdown_player.tscn" id="1_674oh"]
 [ext_resource type="PackedScene" uid="uid://3mqp6qiakxml" path="res://Base/Scenes/background.tscn" id="2_m33sc"]
 [ext_resource type="PackedScene" uid="uid://dxxuypkhwhu2s" path="res://Base/Scenes/tile_map.tscn" id="3_bduiw"]
 [ext_resource type="PackedScene" uid="uid://dtpj6wnpl2u6a" path="res://Base/Scenes/TopDown/pillar.tscn" id="4_h13a6"]
+[ext_resource type="PackedScene" uid="uid://d0twuwclvqw7y" path="res://Base/Scenes/breakable.tscn" id="5_gylmh"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Background" parent="." instance=ExtResource("2_m33sc")]
+z_index = -1
 
 [node name="LevelTileMap" parent="." instance=ExtResource("3_bduiw")]
 y_sort_enabled = true
@@ -31,3 +33,15 @@ position = Vector2(232, 144)
 
 [node name="Pillar4" parent="." instance=ExtResource("4_h13a6")]
 position = Vector2(88, 64)
+
+[node name="Pot" parent="." instance=ExtResource("5_gylmh")]
+position = Vector2(40, 136)
+
+[node name="Pot2" parent="." instance=ExtResource("5_gylmh")]
+position = Vector2(280, 136)
+
+[node name="Pot3" parent="." instance=ExtResource("5_gylmh")]
+position = Vector2(40, 48)
+
+[node name="Pot4" parent="." instance=ExtResource("5_gylmh")]
+position = Vector2(280, 48)

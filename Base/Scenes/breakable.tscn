@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0twuwclvqw7y"]
+
+[ext_resource type="Texture2D" uid="uid://d1hrf0ftlvqvv" path="res://Sprites/Pot.png" id="1_66ctn"]
+[ext_resource type="Script" path="res://Base/Scripts/Breakable.gd" id="1_ckp70"]
+[ext_resource type="PackedScene" uid="uid://cmq3y4es04bgx" path="res://Base/Scenes/one_time_effect.tscn" id="2_t1bja"]
+
+[node name="Pot" type="Node2D"]
+script = ExtResource("1_ckp70")
+break_effect = ExtResource("2_t1bja")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_66ctn")
+hframes = 6
