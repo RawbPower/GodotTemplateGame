@@ -138,21 +138,18 @@ shape = SubResource("CapsuleShape2D_yurcp")
 metadata/_edit_group_ = true
 
 [node name="Sword" type="Node2D" parent="."]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -5)
 
 [node name="Node2D" type="Node2D" parent="Sword"]
-z_index = 1
 y_sort_enabled = true
-rotation = -0.392699
 
 [node name="Sprite2D" type="Sprite2D" parent="Sword/Node2D"]
-z_index = 1
 y_sort_enabled = true
-position = Vector2(11, -6)
+position = Vector2(0, 3)
 rotation = -0.785398
 texture = ExtResource("3_6wa4y")
+offset = Vector2(14, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sword"]
 libraries = {
@@ -161,6 +158,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="Sword"]
+z_index = 1
 position = Vector2(22, 0)
 rotation = 0.181514
 texture = ExtResource("4_qqpib")
