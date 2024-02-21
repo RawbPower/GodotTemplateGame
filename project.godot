@@ -130,6 +130,8 @@ attack={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Hazards"
 2d_physics/layer_4="Collectable"
+2d_physics/layer_5="PlayerHurtbox"
+2d_physics/layer_6="EnemyHurtbox"
 
 [physics]
 

@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0twuwclvqw7y"]
+[gd_scene load_steps=6 format=3 uid="uid://d0twuwclvqw7y"]
 
 [ext_resource type="Texture2D" uid="uid://d1hrf0ftlvqvv" path="res://Sprites/Pot.png" id="1_66ctn"]
 [ext_resource type="Script" path="res://Base/Scripts/Breakable.gd" id="1_ckp70"]
 [ext_resource type="PackedScene" uid="uid://cmq3y4es04bgx" path="res://Base/Scenes/one_time_effect.tscn" id="2_t1bja"]
+[ext_resource type="PackedScene" uid="uid://bsc1lrtlxst0j" path="res://Base/Scenes/hurtbox.tscn" id="4_gv6b2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlcal"]
+size = Vector2(12, 14)
 
 [node name="Pot" type="Node2D"]
 script = ExtResource("1_ckp70")
@@ -11,3 +15,14 @@ break_effect = ExtResource("2_t1bja")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_66ctn")
 hframes = 6
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_gv6b2")]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("RectangleShape2D_hlcal")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hurtbox"]
