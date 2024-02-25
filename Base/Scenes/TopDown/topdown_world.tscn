@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b26n51cmttgax"]
+[gd_scene load_steps=7 format=3 uid="uid://b26n51cmttgax"]
 
 [ext_resource type="PackedScene" uid="uid://blhkbe1kqstdl" path="res://Base/Scenes/TopDown/topdown_player.tscn" id="1_674oh"]
 [ext_resource type="PackedScene" uid="uid://3mqp6qiakxml" path="res://Base/Scenes/background.tscn" id="2_m33sc"]
 [ext_resource type="PackedScene" uid="uid://dxxuypkhwhu2s" path="res://Base/Scenes/tile_map.tscn" id="3_bduiw"]
+[ext_resource type="PackedScene" uid="uid://bm0jjjdvjjtv7" path="res://Base/Scenes/enemy.tscn" id="4_6pi57"]
 [ext_resource type="PackedScene" uid="uid://dtpj6wnpl2u6a" path="res://Base/Scenes/TopDown/pillar.tscn" id="4_h13a6"]
 [ext_resource type="PackedScene" uid="uid://d0twuwclvqw7y" path="res://Base/Scenes/breakable.tscn" id="5_gylmh"]
 
@@ -21,6 +22,21 @@ layer_2/tile_data = PackedInt32Array(0, 327680, 1, 65536, 131072, 1, 131072, 131
 
 [node name="Player" parent="." instance=ExtResource("1_674oh")]
 position = Vector2(160, 87)
+
+[node name="Enemy" parent="." instance=ExtResource("4_6pi57")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(264, 88)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_6pi57")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(64, 56)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_6pi57")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(168, 120)
 
 [node name="Pillar" parent="." instance=ExtResource("4_h13a6")]
 position = Vector2(232, 64)

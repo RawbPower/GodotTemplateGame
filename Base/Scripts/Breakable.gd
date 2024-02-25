@@ -4,8 +4,7 @@ extends Node2D
 
 func create_grass_effect():
 	var breakEffect = break_effect.instantiate()
-	var world = get_tree().current_scene
-	world.add_child(breakEffect)
+	get_parent().add_child(breakEffect)
 	breakEffect.global_position = global_position
 
 

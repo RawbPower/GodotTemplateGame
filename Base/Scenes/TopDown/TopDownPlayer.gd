@@ -3,36 +3,37 @@ extends CharacterBody2D
 @export var speed = 100.0
 @export var acceleration = 800.0
 @export var friction = 1000.0
+@export var roll_speed = 160.0
 
 enum { NO_ACTION, ROLL, ATTACK}
 
 var state = NO_ACTION
+var roll_direction = Vector2.RIGHT
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var sword_animation_player = $Sword/AnimationPlayer
 @onready var sword = $Sword
 @onready var sword_sprite_2d = $Sword/Node2D/Sprite2D
+@onready var weapon_hitbox = $Sword/WeaponHitbox
 
 func _ready():
-	pass
+	weapon_hitbox.knockback_direction = roll_direction
 	
 func _physics_process(delta):
 	var input_horizontal = Input.get_axis("move_left", "move_right")
 	var input_vertical = Input.get_axis("move_up", "move_down")
 	var input_vector = Vector2(input_horizontal, input_vertical)
 	
-	process_movement(input_vector, delta)
-	
 	match state:
 		NO_ACTION:
-			update_weapon()
-			if (Input.is_action_just_pressed("attack")):
-				state = ATTACK
+			process_no_action_state()
 		ROLL:
-			pass
+			process_roll_state()
 		ATTACK:
-			process_attack()
+			process_attack_state()
+			
+	process_movement(input_vector, delta)
 			
 	apply_friction(input_vector, delta)
 	
@@ -42,16 +43,20 @@ func _physics_process(delta):
 	update_animations(input_vector)
 	
 func process_movement(input_vector, delta):
-	var velocity_direction = Vector2.ZERO
-	if input_vector.x:
-		velocity_direction.x = input_vector.x
+	match state:
+		NO_ACTION, ATTACK:
+			var velocity_direction = Vector2.ZERO
+			if input_vector.x:
+				velocity_direction.x = input_vector.x
 		
-	if input_vector.y:
-		velocity_direction.y = input_vector.y
+			if input_vector.y:
+				velocity_direction.y = input_vector.y
 		
-	velocity_direction = velocity_direction.normalized()
+			velocity_direction = velocity_direction.normalized()
 	
-	velocity = velocity.move_toward(velocity_direction * speed, acceleration * delta)
+			velocity = velocity.move_toward(velocity_direction * speed, acceleration * delta)
+		ROLL:
+			velocity = roll_direction * roll_speed
 	
 func apply_friction(input_vector, delta):
 	if input_vector.x == 0.0:
@@ -61,14 +66,20 @@ func apply_friction(input_vector, delta):
 		velocity.y = move_toward(velocity.y, 0, friction * delta)
 		
 func update_animations(input_vector):
-	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
-	if mouse_direction.x:
-		sprite_2d.flip_h = mouse_direction.x < 0
+	match state:
+		NO_ACTION:
+			var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
+			if mouse_direction.x:
+				sprite_2d.flip_h = mouse_direction.x < 0
 	
-	if input_vector != Vector2.ZERO:
-		animation_player.play("run")
-	else:
-		animation_player.play("idle")
+			if input_vector != Vector2.ZERO:
+				animation_player.play("run")
+			else:
+				animation_player.play("idle")
+		ROLL:
+			pass
+		ATTACK:
+			pass
 		
 func update_weapon():
 	var mouse_direction: Vector2 = (get_global_mouse_position() - sword.global_position).normalized()
@@ -78,9 +89,27 @@ func update_weapon():
 	if sword.scale.y == -1 and mouse_direction.x > 0:
 		sword.scale.y = 1
 		
-func process_attack():
+func process_no_action_state():
+	update_weapon()
+	if (Input.is_action_just_pressed("attack")):
+		state = ATTACK
+	elif (Input.is_action_just_pressed("jump")):
+		state = ROLL
+		
+	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
+	if (mouse_direction):
+		roll_direction = mouse_direction
+		weapon_hitbox.knockback_direction = mouse_direction
+		
+func process_attack_state():
 	if (sword_animation_player.current_animation != "attack"):
 		sword_animation_player.play("attack")
 		await sword_animation_player.animation_finished
 		sword_animation_player.play("idle")
+		state = NO_ACTION
+		
+func process_roll_state():
+	if (animation_player.current_animation != "roll"):
+		animation_player.play("roll")
+		await animation_player.animation_finished
 		state = NO_ACTION

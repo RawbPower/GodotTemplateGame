@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcxgbrgcc5r7e"]
+
+[ext_resource type="Script" path="res://Base/Scripts/OneTimeEffect.gd" id="1_2kw8t"]
+[ext_resource type="Texture2D" uid="uid://j2p7ge1ii42j" path="res://Sprites/Ghosty.png" id="2_i6t6v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k0mc"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjhd0"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ncmc"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jla18"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd4xo"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq2yr"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wthl"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pavv"]
+atlas = ExtResource("2_i6t6v")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ck8mp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k0mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjhd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ncmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jla18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yd4xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq2yr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wthl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pavv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="EnemyDeathEffect" type="Node2D"]
+script = ExtResource("1_2kw8t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ck8mp")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+offset = Vector2(0, -12)
