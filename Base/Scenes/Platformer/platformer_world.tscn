@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cogmtvwk57igd" path="res://Base/Scenes/Platformer/platformer_player.tscn" id="5_7ljg6"]
 [ext_resource type="PackedScene" uid="uid://dxxuypkhwhu2s" path="res://Base/Scenes/tile_map.tscn" id="8_vq5pv"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("level_timer", "level_completed")]
 script = ExtResource("1_mwog8")
+level_timer = NodePath("CanvasLayer/CenterContainer/LevelTimer")
+level_completed = NodePath("CanvasLayer/LevelCompleted")
 
 [node name="Background" parent="." instance=ExtResource("2_gyita")]
 scale = Vector2(100, 80)

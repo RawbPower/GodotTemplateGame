@@ -7,7 +7,6 @@ var air_jump = false
 var just_wall_jumped = false
 var last_wall_normal = Vector2.ZERO
 
-@onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var coyote_jump_timer = $CoyoteJumpTimer

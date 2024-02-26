@@ -9,6 +9,7 @@ enum { NO_ACTION, ROLL, ATTACK}
 
 var state = NO_ACTION
 var roll_direction = Vector2.RIGHT
+var status = PlayerStatus
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -16,8 +17,11 @@ var roll_direction = Vector2.RIGHT
 @onready var sword = $Sword
 @onready var sword_sprite_2d = $Sword/Node2D/Sprite2D
 @onready var weapon_hitbox = $Sword/WeaponHitbox
+@onready var hurtbox = $Hurtbox
 
 func _ready():
+	status.init()
+	status.connect("no_health", on_no_health)
 	weapon_hitbox.knockback_direction = roll_direction
 	
 func _physics_process(delta):
@@ -113,3 +117,15 @@ func process_roll_state():
 		animation_player.play("roll")
 		await animation_player.animation_finished
 		state = NO_ACTION
+
+
+func _on_hurtbox_area_entered(area):
+	if status.health <= 0:
+		return
+	status.health -= 1
+	hurtbox.start_invincibilty(0.5)
+		
+func on_no_health():
+	await LevelTransition.fade_to_black()
+	get_tree().paused = false
+	get_tree().reload_current_scene()

@@ -8,3 +8,4 @@ collision_mask = 0
 script = ExtResource("1_nuj3j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.937255, 0.223529, 0.305882, 0.419608)

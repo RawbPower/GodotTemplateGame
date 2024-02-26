@@ -1,15 +1,16 @@
 extends Node2D
 
 @export var next_level: PackedScene
-
-@onready var level_completed = $CanvasLayer/LevelCompleted
-@onready var level_timer = %LevelTimer
+@export var level_timer: LevelTimer
+@export var level_completed: ColorRect
 
 
 func _ready():
-	Events.level_completed.connect(show_level_completed)
 	LevelTransition.fade_from_black()
-	level_timer.start_timer()
+	if level_completed:
+		Events.level_completed.connect(show_level_completed)
+	if level_timer:
+		level_timer.start_timer()
 	
 func go_to_next_level():
 	if not next_level is PackedScene:

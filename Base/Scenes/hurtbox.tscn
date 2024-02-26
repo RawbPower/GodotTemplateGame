@@ -1,7 +1,17 @@
-[gd_scene format=3 uid="uid://bsc1lrtlxst0j"]
+[gd_scene load_steps=2 format=3 uid="uid://bsc1lrtlxst0j"]
+
+[ext_resource type="Script" path="res://Base/Scenes/Hurtbox.gd" id="1_if84v"]
 
 [node name="Hurtbox" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("1_if84v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(0.12549, 0.647059, 0.0431373, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="invincibility_end" from="." to="." method="_on_invincibility_end"]
+[connection signal="invincibility_start" from="." to="." method="_on_invincibility_start"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
