@@ -15,6 +15,10 @@ var state = IDLE
 @onready var detection_zone = $DetectionZone
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var soft_collision = $SoftCollision
+@onready var wander_controller = $WanderController
+
+func _ready():
+	randomize()
 
 func _physics_process(delta):
 	# Incorporate this into other movement
@@ -32,12 +36,25 @@ func process_FSM(delta):
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 			seek_player()
+			
+			if state == IDLE && wander_controller.get_time_left() <= 0:
+				update_wander()
 		WANDER:
-			pass
+			seek_player()
+			
+			if state == WANDER && wander_controller.get_time_left() <= 0:
+				update_wander()
+				
+			var move_direction = global_position.direction_to(wander_controller.target_position)
+			velocity = velocity.move_toward(move_direction * max_speed, acceleration * delta)
+			
+			if global_position.distance_squared_to(wander_controller.target_position) <= max_speed * delta:
+				update_wander()
+			animated_sprite_2d.flip_h = velocity.x > 0
 		PURSUE:
 			var target = detection_zone.target
 			if target != null:
-				var move_direction = (target.global_position - global_position).normalized()
+				var move_direction = global_position.direction_to(target.global_position)
 				velocity = velocity.move_toward(move_direction * max_speed, acceleration * delta)
 			else:
 				state = IDLE
@@ -47,6 +64,14 @@ func process_FSM(delta):
 func seek_player():
 	if detection_zone.can_see_player():
 		state = PURSUE
+		
+func pick_random_state(state_list):
+	state_list.shuffle()
+	return state_list.pop_front()
+	
+func update_wander():
+	state = pick_random_state([IDLE, WANDER])
+	wander_controller.start_timer(randf_range(1,3))
 	
 func _on_hurtbox_area_entered(area):
 	if area is Hitbox:

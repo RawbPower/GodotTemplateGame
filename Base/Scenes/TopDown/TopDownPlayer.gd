@@ -31,7 +31,7 @@ func _physics_process(delta):
 	
 	match state:
 		NO_ACTION:
-			process_no_action_state()
+			process_no_action_state(input_vector)
 		ROLL:
 			process_roll_state()
 		ATTACK:
@@ -93,7 +93,7 @@ func update_weapon():
 	if sword.scale.y == -1 and mouse_direction.x > 0:
 		sword.scale.y = 1
 		
-func process_no_action_state():
+func process_no_action_state(input_direction):
 	update_weapon()
 	if (Input.is_action_just_pressed("attack")):
 		state = ATTACK
@@ -102,7 +102,7 @@ func process_no_action_state():
 		
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	if (mouse_direction):
-		roll_direction = mouse_direction
+		roll_direction = input_direction
 		weapon_hitbox.knockback_direction = mouse_direction
 		
 func process_attack_state():
