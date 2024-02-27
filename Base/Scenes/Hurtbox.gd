@@ -4,6 +4,7 @@ signal invincibility_start
 signal invincibility_end
 
 @onready var timer = $Timer
+@onready var collision_shape_2d = $CollisionShape2D
 
 var invincible : bool = false
 			
@@ -17,7 +18,7 @@ func _on_timer_timeout():
 	emit_signal("invincibility_end")
 
 func _on_invincibility_start():
-	set_deferred ("monitoring", false)
+	collision_shape_2d.set_deferred ("disabled", true)
 
 func _on_invincibility_end():
-	monitoring = true
+	collision_shape_2d.disabled = false
