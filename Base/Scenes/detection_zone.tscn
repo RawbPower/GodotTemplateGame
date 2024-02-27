@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgr13lgcxshse"]
 
-[ext_resource type="Script" path="res://Base/Scenes/DetectionZone.gd" id="1_xd7yh"]
+[ext_resource type="Script" path="res://Base/Scripts/DetectionZone.gd" id="1_xd7yh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1wsx"]
 radius = 77.2334

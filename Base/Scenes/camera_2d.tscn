@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpylu0ct0l6qu"]
 
-[ext_resource type="Script" path="res://Base/Scenes/LimitCamera2D.gd" id="1_1xtw0"]
+[ext_resource type="Script" path="res://Base/Scripts/LimitCamera2D.gd" id="1_imcd4"]
 
 [node name="Camera2D" type="Camera2D" node_paths=PackedStringArray("top_left", "bottom_right")]
 position = Vector2(160, 90)
 process_callback = 0
 position_smoothing_enabled = true
-script = ExtResource("1_1xtw0")
+script = ExtResource("1_imcd4")
 top_left = NodePath("Limits/TopLeft")
 bottom_right = NodePath("Limits/BottomRight")
 
