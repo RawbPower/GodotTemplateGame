@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://k8n50eddew14"]
+
+[ext_resource type="Script" path="res://Base/Scripts/OneTimeSoundEffect.gd" id="1_niyhp"]
+
+[node name="OneTimeSoundEffect" type="AudioStreamPlayer"]
+autoplay = true
+script = ExtResource("1_niyhp")

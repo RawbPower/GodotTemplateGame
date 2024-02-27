@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn1webpk6a5qp"]
+
+[ext_resource type="AudioStream" uid="uid://d1dok3cfd03y8" path="res://Sound/bounce.wav" id="1_ismay"]
+[ext_resource type="Script" path="res://Base/Scripts/OneTimeSoundEffect.gd" id="2_6bmap"]
+
+[node name="EnemyHit" type="AudioStreamPlayer"]
+stream = ExtResource("1_ismay")
+autoplay = true
+script = ExtResource("2_6bmap")

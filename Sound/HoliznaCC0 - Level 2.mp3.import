@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxsn5aa7w2bno"
+path="res://.godot/imported/HoliznaCC0 - Level 2.mp3-9739fa601ce8a7a4e8df69d71c5021a2.mp3str"
+
+[deps]
+
+source_file="res://Sound/HoliznaCC0 - Level 2.mp3"
+dest_files=["res://.godot/imported/HoliznaCC0 - Level 2.mp3-9739fa601ce8a7a4e8df69d71c5021a2.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

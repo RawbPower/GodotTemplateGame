@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var friction = 1000.0
 @export var roll_speed = 160.0
 
+@export var hurt_sound : PackedScene
+
 enum { NO_ACTION, ROLL, ATTACK}
 
 var state = NO_ACTION
@@ -18,6 +20,7 @@ var status = PlayerStatus
 @onready var sword_sprite_2d = $Sword/Node2D/Sprite2D
 @onready var weapon_hitbox = $Sword/WeaponHitbox
 @onready var hurtbox = $Hurtbox
+@onready var blink_animation = $BlinkAnimation
 
 func _ready():
 	status.init()
@@ -122,10 +125,20 @@ func process_roll_state():
 func _on_hurtbox_area_entered(area):
 	if status.health <= 0:
 		return
-	status.health -= 1
+	status.health -= area.damage
 	hurtbox.start_invincibilty(0.5)
+	if (hurt_sound):
+		var hurtSound = hurt_sound.instantiate()
+		get_tree().current_scene.add_child(hurtSound)
 		
 func on_no_health():
 	await LevelTransition.fade_to_black()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_hurtbox_invincibility_start():
+	blink_animation.play("start")
+
+func _on_hurtbox_invincibility_end():
+	blink_animation.play("stop")
+

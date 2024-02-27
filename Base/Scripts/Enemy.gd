@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var max_speed : float = 30
 @export var friction : float = 200
 @export var death_effect : Resource
+@export var hurt_sound : PackedScene
 
 enum { IDLE, WANDER, PURSUE }
 
@@ -16,6 +17,8 @@ var state = IDLE
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var soft_collision = $SoftCollision
 @onready var wander_controller = $WanderController
+@onready var hurtbox = $Hurtbox
+@onready var blink_animation = $BlinkAnimation
 
 func _ready():
 	randomize()
@@ -77,9 +80,20 @@ func _on_hurtbox_area_entered(area):
 	if area is Hitbox:
 		status.health -= area.damage
 		knockback = area.knockback_direction * 150
+		hurtbox.start_invincibilty(0.4)
+		if (hurt_sound):
+			var hurtSound = hurt_sound.instantiate()
+			get_tree().current_scene.add_child(hurtSound)
 
 func _on_status_no_health():
 	queue_free()
 	var enemyDeathEffect = death_effect.instantiate()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.global_position = global_position
+
+func _on_hurtbox_invincibility_start():
+	blink_animation.play("start")
+
+func _on_hurtbox_invincibility_end():
+	blink_animation.play("stop")
+
